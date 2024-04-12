@@ -1,0 +1,13 @@
+<MudStack Row>
+    <MudPaper Elevation="0">@PriceName</MudPaper>
+    <MudPaper Style="color: #00C853;" Elevation="0">@PriceValueWithDiscount</MudPaper>
+    <MudPaper Style="text-decoration: line-through; color: red;" Elevation="0">@PriceValue</MudPaper>
+</MudStack>
+
+
+@code
+{
+    [Parameter] public string PriceName { get; set; } = string.Empty;
+    [Parameter] public string PriceValueWithDiscount { get; set; } = string.Empty;
+    [Parameter] public string PriceValue { get; set; } = string.Empty;
+}

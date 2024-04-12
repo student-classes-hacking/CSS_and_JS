@@ -5,3 +5,74 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+<!-- MUD BLAZOR EXAMPLE I: Hello World and Welcome -->
+
+<MudText Typo="Typo.h3" GutterBottom="true">Hello World</MudText>
+<MudText Class="mb-8">Welcome to your new app, powered by MudBlazor!</MudText>
+
+<!-- ********************* -->
+
+<!-- MUD BLAZOR EXAMPLE II: Login -->
+
+
+@* Style="max-width:276px;" *@
+<MudGrid Class="justify-center">
+    <MudItem xs="12" sm="10" md="9">
+        <MudTabs Elevation="6" PanelClass="mb-2" Class="mx-lg-16" @ref="tabs" ActivePanelIndexChanged="@ActivePanelIndexChanged" Rounded Centered>
+            <MudTabPanel Icon="@Icons.Material.Filled.AccountCircle" Text="Loguearse" @ref="panelLogin">
+                @* you can put here the login component *@
+            </MudTabPanel>
+            <MudTabPanel Icon="@Icons.Material.Filled.GroupAdd" Text="Registrarse" @ref="panelRegister">
+                @* you can put here the register component *@
+            </MudTabPanel>
+        </MudTabs>
+    </MudItem>
+</MudGrid>
+
+
+
+@if (isLoginActive)
+{
+@* <LoginComp></LoginComp> *@
+}
+else
+{
+@* <SignUpComp></SignUpComp> *@
+}
+
+<!-- ********************* -->
+
+<!-- MUD BLAZOR EXAMPLE III: Using a custom component -->
+
+<PriceComp PriceName="Precio" PriceValueWithDiscount="@(((decimal) 32.1).ToString("C", new CultureInfo("de-DE")))" PriceValue="@(((decimal)35.95).ToString("C", new CultureInfo("de-DE")))"></PriceComp>
+
+<!-- ********************* -->
+
+
+<MudAlert Severity="Severity.Normal">You can find documentation and examples on our website here: <MudLink Href="https://mudblazor.com" Typo="Typo.body2" Color="Color.Inherit"><b>www.mudblazor.com</b></MudLink></MudAlert>
+
+@code
+{
+    MudTabs? tabs;
+    MudTabPanel? panelLogin;
+    MudTabPanel? panelRegister;
+
+    private bool isLoginActive = true;
+    // // you can active a tab by index
+    // void Activate(int index)
+    // {
+    //     tabs!.ActivatePanel(index);
+    // }
+    // // you can active a tab by reference
+    // void Activate(MudTabPanel panel)
+    // {
+    //     tabs!.ActivatePanel(panel);
+    // }
+
+    private void ActivePanelIndexChanged()
+    {
+        isLoginActive = tabs!.ActivePanelIndex == 0;
+        // StateHasChanged();
+    }
+}
